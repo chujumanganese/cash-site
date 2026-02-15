@@ -8,31 +8,54 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link href="/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/styles.css" rel="stylesheet" />
+
 </head>
-<body class="d-flex justify-content-center align-items-center vh-100">
-    <form action="" class="w-50 shado2 p-4 border" method="post">
-        <div class="form-group d-flex flex-column my-3">
-            <label for="email" class="h5">Email</label>
-            <input type="text" id="email" name="email" class="form-control">
+<body class="container-fluid py-4 register d-flex justify-content-center align-items-center">
+    <% if (errors.length > 0) { %>
+        <ul class="position-absolute p-3 arror" style="color:red; height: 200px;">
+            <% errors.forEach(error => { %>
+                <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+    <% } %>
+    <div class="row w-75 shado2 border border-5 rounded-5">
+        <div class="col-4 d-flex align-items-center justify-content-center colo radius">
+            <img src="/img/boys.jpeg" alt="" class="rounded-5" width="250px">
         </div>
-        <div class="form-group d-flex flex-column my-3">
-            <label for="phone" class="h5">Tel No</label>
-            <input type="tel" id="phone" name="phone" class="form-control">
-        </div>
-        <div class="form-group d-flex flex-column my-3">
-            <label for="pwd" class="h5">Password</label>
-            <input type="password" id="pwd" name="password" class="form-control bg-light">
-        </div>
-        <div class="form-group d-flex flex-column my-3">
-            <label for="conf_pwd" class="h5">Confirm Password</label>
-            <input type="password" id="conf_pwd" name="confirm_password" class="form-control">
-        </div>
-        <div class="text-center d-flex flex-column my-3">
-            <p class="bg-light">Sign in with Google</p>
-            <p class="bg-light">Sign in with Facebook</p>
-        </div>
-        <button class="w-100 border-0 p-2">Login</button>
-    </form>
+        <form action="/register" class="col-8 py-4 px-3" method="post">
+            <a href="/"><img src="/img/home.svg" alt="" width="30px"></a>
+            <h3 class="text-center">Create <span style="color: #90a955;">Account</span></h3>
+            <div class="form-group d-flex flex-column my-3">
+                <label for="email" class="h5">Email</label>
+                <input autocomplete="new-password" type="text" id="email" name="emails" class="form-control border" value=<%= old.email || '' %>>
+            </div>
+            <div class="form-group d-flex flex-column my-3">
+                <label for="pwd" class="h5">Password</label>
+                <input autocomplete="new-password" type="password" id="pwd" name="passwords" class="form-control border">
+            </div>
+            <div class="form-group d-flex flex-column my-3">
+                <label for="conf_pwd" class="h5">Confirm Password</label>
+                <input type="password" id="conf_pwd" name="confirm_password" class="form-control border">
+            </div>
+            <div class="form-group d-flex flex-column my-3">
+                <select class="form-select" name="chaining">
+                    <option value="btc">Bitcoin (BTC)</option>
+                    <option value="xrp">XRP</option>
+                </select>
+            </div>
+            <div class="text-center d-flex flex-column my-4">
+                <p class="p-2 rounded-5">
+                    <img src="/img/google.svg" alt="" width="25px">
+                    <span class="ms-2">Sign in with Google</span>
+                </p>
+                <p class="p-2 rounded-5">
+                    <img src="/img/face.svg" alt="" width="25px">
+                    <span class="ms-2">Sign in with Facebook</span>
+                </p>
+            </div>
+            <button type="submit" class="w-100 border-0 p-2 rounded-5 text-light" style="background: #90a955;">Login</button>
+        </form>
+    </div>
 
     <script src="https://cdn.jsdel/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/dist/js/bootstrap.min.js"></script>
